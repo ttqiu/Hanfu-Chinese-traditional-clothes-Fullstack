@@ -18,7 +18,7 @@
 
 ## **_How to Get Started_**
 
-- A Trello board to keep track of development progress [here](https://trello.com/b/jUXCA7lq/unit-1-project).
+- A Trello board to keep track of development progress [here](https://trello.com/b/pLwzrRzd/unit-2-project).
 
 - Entity Relationship Diagram for the backend
 
