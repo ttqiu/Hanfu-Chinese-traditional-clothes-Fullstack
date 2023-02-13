@@ -25,7 +25,17 @@ const createStore = async (req, res) => {
   }
 }
 
+const getAllClothes = async (req, res) => {
+  try {
+    const clothes = await Clothes.find()
+    return res.status(200).json({ clothes })
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 module.exports = {
   createClothes,
-  createStore
+  createStore,
+  getAllClothes
 }
