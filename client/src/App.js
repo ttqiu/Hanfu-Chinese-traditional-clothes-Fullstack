@@ -3,6 +3,7 @@ import axios from 'axios'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import Nav from './components/Nav'
+import About from './Pages/About'
 
 const App = () => {
   const [clothes, setClothes] = useState([])
@@ -36,8 +37,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Hanfu</h1>
-      {/* <Nav /> */}
+      <Nav />
+      <main>
+        <Routes>
+          {/* <Route index element={<Home />} /> */}
+          <Route path="about" element={<About />} />
+        </Routes>
+      </main>
     </div>
   )
 }
