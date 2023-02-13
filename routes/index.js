@@ -10,5 +10,6 @@ router.put('/clothes/:id', controllers.updateClothes)
 router.post('/stores', controllers.createStore)
 router.get('/stores', controllers.getAllStores)
 router.get('/stores/:id', controllers.getStoreById)
+router.put('/stores/:id', controllers.updateStore)
 
 module.exports = router
