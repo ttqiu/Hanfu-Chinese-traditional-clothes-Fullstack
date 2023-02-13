@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import './App.css'
 
-function App() {
+const App = () => {
+  const [clothes, setClothes] = useState([])
+  const [store, setStore] = useState([])
+
+  const getClothes = async () => {
+    try {
+      let res = await axios.get('http://localhost:3001/clothes')
+      setClothes(res.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const getStores = async () => {
+    try {
+      let res = await axios.get('http://localhost:3001/stores')
+      setStore(res.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getClothes()
+  }, [])
+
+  useEffect(() => {
+    getStores()
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Hanfu</h1>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
