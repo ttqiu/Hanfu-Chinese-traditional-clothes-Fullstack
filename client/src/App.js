@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
+import { Routes, Route } from 'react-router-dom'
+import Nav from './components/Nav'
 
 const App = () => {
   const [clothes, setClothes] = useState([])
@@ -33,8 +35,9 @@ const App = () => {
   }, [])
 
   return (
-    <div>
+    <div className="App">
       <h1>Hanfu</h1>
+      {/* <Nav /> */}
     </div>
   )
 }
