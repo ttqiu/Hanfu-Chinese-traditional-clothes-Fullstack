@@ -56,10 +56,24 @@ const getClothesById = async (req, res) => {
   }
 }
 
+const getStoreById = async (req, res) => {
+  try {
+    const { id } = req.params
+    const store = await Store.findById(id)
+    if (store) {
+      return res.status(200).json({ store })
+    }
+    return res.status(404).send('Store with the specified ID does not exists')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 module.exports = {
   createClothes,
   createStore,
   getAllClothes,
   getAllStores,
-  getClothesById
+  getClothesById,
+  getStoreById
 }
