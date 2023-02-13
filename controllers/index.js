@@ -104,6 +104,19 @@ const deleteClothes = async (req, res) => {
   }
 }
 
+const deleteStore = async (req, res) => {
+  try {
+    const { id } = req.params
+    const deleted = await Store.findByIdAndDelete(id)
+    if (deleted) {
+      return res.status(200).send('Store deleted')
+    }
+    throw new Error('Store not found')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 module.exports = {
   createClothes,
   createStore,
@@ -113,5 +126,6 @@ module.exports = {
   getStoreById,
   updateClothes,
   updateStore,
-  deleteClothes
+  deleteClothes,
+  deleteStore
 }

@@ -12,5 +12,6 @@ router.post('/stores', controllers.createStore)
 router.get('/stores', controllers.getAllStores)
 router.get('/stores/:id', controllers.getStoreById)
 router.put('/stores/:id', controllers.updateStore)
+router.delete('/stores/:id', controllers.deleteStore)
 
 module.exports = router
