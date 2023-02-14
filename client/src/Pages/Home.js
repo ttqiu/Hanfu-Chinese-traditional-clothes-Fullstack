@@ -51,7 +51,7 @@ const Home = () => {
             <h2>Search Results</h2>
             <section className="search-results container-grid">
               {searchResults.map((result) => (
-                <NavLink to={`/Clothes/${result._id}`} key={result._id}>
+                <NavLink to={`/clothes/details/${result._id}`} key={result._id}>
                   <ClothesCard
                     name={result.name}
                     image={result.image}

@@ -60,6 +60,19 @@ const getClothesByName = async (req, res) => {
   }
 }
 
+const getClothesById = async (req, res) => {
+  try {
+    const { id } = req.params
+    const clothes = await Clothes.findById(id)
+    if (clothes) {
+      return res.status(200).json({ clothes })
+    }
+    return res.status(404).send('Clothes with the specified ID does not exists')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 const getStoreByName = async (req, res) => {
   try {
     const storeName = req.params.name
@@ -129,6 +142,7 @@ module.exports = {
   getAllClothes,
   getAllStores,
   getClothesByName,
+  getClothesById,
   getStoreByName,
   updateClothes,
   updateStore,
