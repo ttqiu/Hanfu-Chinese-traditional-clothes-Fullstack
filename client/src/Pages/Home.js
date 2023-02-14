@@ -21,27 +21,30 @@ const Home = () => {
     getStores()
   }, [])
 
-  // const [searchResults, setSearchResults] = useState([])
-  // const [searched, toggleSearched] = useState(false)
-  // const [searchQuery, setSearchQuery] = useState('')
+  const [searchResults, setSearchResults] = useState([])
+  const [searched, toggleSearched] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
 
-  // const getSearchResults = async (e) => {
-  //   e.preventDefault()
-  //   const response = await axios.get(
-  //     `https://api.rawg.io/api/games?key=${API_KEY}&search=${searchQuery}`
-  //   )
-  //   setSearchResults(response.data.results)
-  //   toggleSearched(true)
-  //   setSearchQuery('')
-  // }
+  const getSearchResults = async (e) => {
+    e.preventDefault()
+    const res = await axios.get(`http://localhost:3001/clothes/${searchQuery}`)
+    console.log(res.data.clothes)
+    setSearchResults(res.data.clothes)
+    toggleSearched(true)
+    setSearchQuery('')
+  }
 
-  // const handleChange = (event) => {
-  //   setSearchQuery(event.target.value)
-  // }
+  // useEffect(() => {
+  //   getSearchResults()
+  // }, [])
+
+  const handleChange = (event) => {
+    setSearchQuery(event.target.value)
+  }
 
   return (
     <div>
-      {/* <div className="search">
+      <div className="search">
         <Search
           onSubmit={getSearchResults}
           value={searchQuery}
@@ -52,7 +55,7 @@ const Home = () => {
             <h2>Search Results</h2>
             <section className="search-results container-grid">
               {searchResults.map((result) => (
-                <NavLink to={`/Clothes/${result.id}`} key={result.id}>
+                <NavLink to={`/Clothes/${result._id}`} key={result._id}>
                   <ClothesCard
                     name={result.name}
                     image={result.image}
@@ -63,7 +66,7 @@ const Home = () => {
             </section>
           </div>
         )}
-      </div> */}
+      </div>
       <div className="stores">
         <h2>Stores</h2>
         <section className="container-grid">

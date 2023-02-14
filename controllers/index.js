@@ -43,27 +43,33 @@ const getAllStores = async (req, res) => {
   }
 }
 
-const getClothesById = async (req, res) => {
+const getClothesByName = async (req, res) => {
   try {
-    const { id } = req.params
-    const clothes = await Clothes.findById(id)
+    const clothesName = req.params.name
+    const clothes = await Clothes.find({
+      name: { $regex: `${clothesName}`, $options: 'i' }
+    })
     if (clothes) {
       return res.status(200).json({ clothes })
     }
-    return res.status(404).send('Clothes with the specified ID does not exists')
+    return res
+      .status(404)
+      .send('Clothes with the specified Name does not exists')
   } catch (error) {
     return res.status(500).send(error.message)
   }
 }
 
-const getStoreById = async (req, res) => {
+const getStoreByName = async (req, res) => {
   try {
-    const { id } = req.params
-    const store = await Store.findById(id)
+    const storeName = req.params.name
+    const store = await Store.find({
+      name: { $regex: `${storeName}`, $options: 'i' }
+    })
     if (store) {
       return res.status(200).json({ store })
     }
-    return res.status(404).send('Store with the specified ID does not exists')
+    return res.status(404).send('Store with the specified Name does not exists')
   } catch (error) {
     return res.status(500).send(error.message)
   }
@@ -122,8 +128,8 @@ module.exports = {
   createStore,
   getAllClothes,
   getAllStores,
-  getClothesById,
-  getStoreById,
+  getClothesByName,
+  getStoreByName,
   updateClothes,
   updateStore,
   deleteClothes,
