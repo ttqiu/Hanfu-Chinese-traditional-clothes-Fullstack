@@ -7,6 +7,7 @@ const StoreCard = (props) => {
       </div>
       <div className="info-wrapper flex-row">
         <h3>{props.name}</h3>
+        <h3>{props.city}</h3>
       </div>
     </div>
   )
