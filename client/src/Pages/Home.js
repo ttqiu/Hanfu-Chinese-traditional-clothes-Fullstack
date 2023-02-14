@@ -28,15 +28,11 @@ const Home = () => {
   const getSearchResults = async (e) => {
     e.preventDefault()
     const res = await axios.get(`http://localhost:3001/clothes/${searchQuery}`)
-    console.log(res.data.clothes)
+    // console.log(res.data.clothes)
     setSearchResults(res.data.clothes)
     toggleSearched(true)
     setSearchQuery('')
   }
-
-  // useEffect(() => {
-  //   getSearchResults()
-  // }, [])
 
   const handleChange = (event) => {
     setSearchQuery(event.target.value)
@@ -59,7 +55,7 @@ const Home = () => {
                   <ClothesCard
                     name={result.name}
                     image={result.image}
-                    rating={result.store}
+                    category={result.category}
                   />
                 </NavLink>
               ))}
