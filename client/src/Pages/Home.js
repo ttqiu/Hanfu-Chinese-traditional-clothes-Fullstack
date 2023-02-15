@@ -13,7 +13,6 @@ const Home = ({ stores }) => {
   const getSearchResults = async (e) => {
     e.preventDefault()
     const res = await axios.get(`http://localhost:3001/clothes/${searchQuery}`)
-    // console.log(res.data.clothes)
     setSearchResults(res.data.clothes)
     toggleSearched(true)
     setSearchQuery('')
@@ -21,6 +20,14 @@ const Home = ({ stores }) => {
 
   const handleChange = (event) => {
     setSearchQuery(event.target.value)
+  }
+
+  const storeName = (result) => {
+    for (let i = 0; i < stores.length; i++) {
+      if (stores[i]._id === result) {
+        return stores[i].name
+      }
+    }
   }
 
   return (
@@ -41,6 +48,7 @@ const Home = ({ stores }) => {
                     name={result.name}
                     image={result.image}
                     category={result.category}
+                    store={storeName(result.store)}
                   />
                 </NavLink>
               ))}
