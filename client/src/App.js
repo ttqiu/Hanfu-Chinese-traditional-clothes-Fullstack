@@ -6,6 +6,7 @@ import Nav from './components/Nav'
 import About from './Pages/About'
 import Home from './Pages/Home'
 import ClothesDetails from './Pages/ClothesDetails'
+import ViewClothes from './Pages/ViewClothes'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="clothes/details/:id" element={<ClothesDetails />} />
+          <Route path="view/clothes/:id" element={<ViewClothes />} />
         </Routes>
       </main>
     </div>

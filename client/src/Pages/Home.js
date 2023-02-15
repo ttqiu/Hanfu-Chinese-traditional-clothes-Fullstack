@@ -67,7 +67,7 @@ const Home = () => {
         <h2>Stores</h2>
         <section className="container-grid">
           {stores.map((store) => (
-            <NavLink to={`/stores/${store._id}`} key={store._id}>
+            <NavLink to={`/view/clothes/${store._id}`} key={store._id}>
               <StoreCard
                 logo={store.logo}
                 name={store.name}
