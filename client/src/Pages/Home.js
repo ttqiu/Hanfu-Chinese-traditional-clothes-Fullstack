@@ -5,22 +5,7 @@ import ClothesCard from '../components/ClothesCard'
 import StoreCard from '../components/StoreCard'
 import { NavLink } from 'react-router-dom'
 
-const Home = () => {
-  const [stores, setStore] = useState([])
-
-  const getStores = async () => {
-    try {
-      const res = await axios.get('http://localhost:3001/stores')
-      setStore(res.data.stores)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  useEffect(() => {
-    getStores()
-  }, [])
-
+const Home = ({ stores }) => {
   const [searchResults, setSearchResults] = useState([])
   const [searched, toggleSearched] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')

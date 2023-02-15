@@ -9,15 +9,33 @@ import ClothesDetails from './Pages/ClothesDetails'
 import ViewClothes from './Pages/ViewClothes'
 
 const App = () => {
+  const [stores, setStore] = useState([])
+
+  const getStores = async () => {
+    try {
+      const res = await axios.get('http://localhost:3001/stores')
+      setStore(res.data.stores)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getStores()
+  }, [])
+
   return (
     <div className="App">
       <Nav />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home stores={stores} />} />
           <Route path="about" element={<About />} />
           <Route path="clothes/details/:id" element={<ClothesDetails />} />
-          <Route path="view/clothes/:id" element={<ViewClothes />} />
+          <Route
+            path="view/clothes/:id"
+            element={<ViewClothes stores={stores} />}
+          />
         </Routes>
       </main>
     </div>

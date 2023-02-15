@@ -8,6 +8,7 @@ const ClothesCard = (props) => {
       <div className="info-wrapper flex-row space">
         <h3>{props.name}</h3>
         <h3>{props.category}</h3>
+        <h3>{props.store}</h3>
       </div>
     </div>
   )
