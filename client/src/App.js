@@ -24,6 +24,22 @@ const App = () => {
     getStores()
   }, [])
 
+  const [clothes, setClothes] = useState([])
+
+  const getClothes = async () => {
+    try {
+      const res = await axios.get('http://localhost:3001/clothes')
+      setClothes(res.data.clothes)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getClothes()
+  }, [])
+  // console.log(clothes)
+
   return (
     <div className="App">
       <Nav />
@@ -31,10 +47,13 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home stores={stores} />} />
           <Route path="about" element={<About />} />
-          <Route path="clothes/details/:id" element={<ClothesDetails />} />
+          <Route
+            path="clothes/details/:id"
+            element={<ClothesDetails clothes={clothes} stores={stores} />}
+          />
           <Route
             path="view/clothes/:id"
-            element={<ViewClothes stores={stores} />}
+            element={<ViewClothes clothes={clothes} stores={stores} />}
           />
         </Routes>
       </main>

@@ -1,27 +1,11 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
+import { useParams, NavLink } from 'react-router-dom'
 
-const ClothesDetails = () => {
-  const [clothesDetails, setClothesDetails] = useState({})
-
+const ClothesDetails = ({ clothes, stores }) => {
   let { id } = useParams()
-
-  useEffect(() => {
-    let isCancelled = false
-    const getClothesDetails = async () => {
-      const response = await axios.get(
-        `http://localhost:3001/clothes/details/${id}`
-      )
-      if (!isCancelled) {
-        setClothesDetails(response.data.clothes)
-      }
-    }
-    getClothesDetails()
-    return () => {
-      isCancelled = true
-    }
-  }, [id])
+  const clothesDetails = clothes.find((cloth) => cloth._id === id)
+  const storeDetails = stores.find(
+    (store) => store._id === clothesDetails.store
+  )
 
   return (
     <div className="clothes-content">
@@ -39,16 +23,22 @@ const ClothesDetails = () => {
             <h3>Style: {clothesDetails.style}</h3>
           </div>
           <div className="detail">
-            <h3>Category: {clothesDetails.category}</h3>
+            <h3>Category: {clothesDetails.category.join(', ')}</h3>
           </div>
           <div className="detail">
-            <h3>Fabric: {clothesDetails.fabric}</h3>
+            <h3>Fabric: {clothesDetails.fabric.join(', ')}</h3>
           </div>
           <div className="detail">
-            <h3>Store: {clothesDetails.store}</h3>
+            <h3>Store: {storeDetails.name}</h3>
+            <img src={storeDetails.logo} />
           </div>
         </div>
       </section>
+      <div>
+        <NavLink to="/">
+          <button>Back</button>
+        </NavLink>
+      </div>
     </div>
   )
 }

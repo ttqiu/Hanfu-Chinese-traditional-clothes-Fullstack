@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Search from '../components/Search'
 import axios from 'axios'
 import ClothesCard from '../components/ClothesCard'
@@ -47,7 +47,7 @@ const Home = ({ stores }) => {
                   <ClothesCard
                     name={result.name}
                     image={result.image}
-                    category={result.category}
+                    // category={result.category}
                     store={storeName(result.store)}
                   />
                 </NavLink>
