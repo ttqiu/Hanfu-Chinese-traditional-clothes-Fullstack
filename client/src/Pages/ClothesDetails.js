@@ -14,7 +14,7 @@ const ClothesDetails = () => {
         `http://localhost:3001/clothes/details/${id}`
       )
       if (!isCancelled) {
-        console.log(response.data.clothes)
+        // console.log(response.data.clothes)
         setClothesDetails(response.data.clothes)
       }
     }
