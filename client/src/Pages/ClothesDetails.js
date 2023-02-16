@@ -1,7 +1,6 @@
 import { useParams, NavLink, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-// import store from '../../models/store'
 
 const ClothesDetails = ({ storeName, getClothes, stores }) => {
   let { id } = useParams()
@@ -15,12 +14,6 @@ const ClothesDetails = ({ storeName, getClothes, stores }) => {
     }
     getClothesDetails()
   }, [id])
-
-  // const clothesDetails = clothes.find((cloth) => cloth._id === id)
-  // console.log(clothesDetails)
-  // const storeDetails = stores.find(
-  //   (store) => store._id === clothesDetails.store
-  // )
 
   const handleSubmit = async (e) => {
     e.preventDefault()

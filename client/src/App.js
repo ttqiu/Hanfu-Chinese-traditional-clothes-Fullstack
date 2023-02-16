@@ -71,7 +71,6 @@ const App = () => {
             path="clothes/details/:id"
             element={
               <ClothesDetails
-                // clothes={clothes}
                 stores={stores}
                 getClothes={getClothes}
                 storeName={storeName}
@@ -80,14 +79,7 @@ const App = () => {
           />
           <Route
             path="view/clothes/:id"
-            element={
-              <ViewClothes
-                clothes={clothes}
-                stores={stores}
-                // initClothes={initClothes}
-                // getClothes={getClothes}
-              />
-            }
+            element={<ViewClothes clothes={clothes} stores={stores} />}
           />
           <Route
             path="add/"
@@ -101,7 +93,7 @@ const App = () => {
           />
           <Route
             path="add/store"
-            element={<AddStore getStores={getStores} stores={stores} />}
+            element={<AddStore getStores={getStores} />}
           />
         </Routes>
       </main>
