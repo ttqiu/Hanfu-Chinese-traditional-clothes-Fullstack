@@ -20,8 +20,6 @@ const ClothesDetails = ({ clothes, storeName }) => {
     }
   }, [id])
 
-  // console.log(clothesDetails.fabric)
-
   // const clothesStates = clothes.find((cloth) => cloth._id === id)
   // const storeDetails = stores.find((store) => store._id === clothesStates.store)
 
@@ -43,7 +41,6 @@ const ClothesDetails = ({ clothes, storeName }) => {
       `http://localhost:3001/clothes/${id}`,
       clothesDetails
     )
-    console.log(res)
     setClothesDetails({ ...clothesDetails })
   }
 
@@ -83,35 +80,35 @@ const ClothesDetails = ({ clothes, storeName }) => {
           type="text"
           id="name"
           onChange={handleChange}
-          value={clothes.name}
+          value={clothesDetails.name}
         />
         <label htmlFor="image">Image Url:</label>
         <input
           type="text"
           id="image"
           onChange={handleChange}
-          value={clothes.image}
+          value={clothesDetails.image}
         />
         <label htmlFor="style">Style:</label>
         <input
           type="text"
           id="style"
           onChange={handleChange}
-          value={clothes.style}
+          value={clothesDetails.style}
         />
         <label htmlFor="category">Category:</label>
         <input
           type="array"
           id="category"
           onChange={handleChange}
-          value={clothes.category}
+          value={clothesDetails.category}
         />
         <label htmlFor="fabric">Fabric:</label>
         <input
           type="array"
           id="fabric"
           onChange={handleChange}
-          value={clothes.fabric}
+          value={clothesDetails.fabric}
         />
         <button type="submit">Update</button>
       </form>
