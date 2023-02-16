@@ -84,7 +84,11 @@ const App = () => {
           <Route
             path="add/"
             element={
-              <AddClothes getClothes={getClothes} initClothes={initClothes} />
+              <AddClothes
+                getClothes={getClothes}
+                initClothes={initClothes}
+                stores={stores}
+              />
             }
           />
         </Routes>

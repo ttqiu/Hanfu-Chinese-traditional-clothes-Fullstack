@@ -20,10 +20,10 @@ const ClothesDetails = ({ clothes, storeName }) => {
     }
   }, [id])
 
-  // const clothesDetails = clothes.find((cloth) => cloth._id === id)
-  // const storeDetails = stores.find(
-  //   (store) => store._id === clothesDetails.store
-  // )
+  // console.log(clothesDetails.fabric)
+
+  // const clothesStates = clothes.find((cloth) => cloth._id === id)
+  // const storeDetails = stores.find((store) => store._id === clothesStates.store)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -36,6 +36,15 @@ const ClothesDetails = ({ clothes, storeName }) => {
 
   const handleChange = (e) => {
     setClothesDetails({ ...clothesDetails, [e.target.id]: e.target.value })
+  }
+
+  const deleted = async () => {
+    const res = await axios.delete(
+      `http://localhost:3001/clothes/${id}`,
+      clothesDetails
+    )
+    console.log(res)
+    setClothesDetails({ ...clothesDetails })
   }
 
   return (
@@ -106,6 +115,10 @@ const ClothesDetails = ({ clothes, storeName }) => {
         />
         <button type="submit">Update</button>
       </form>
+      <div>
+        <h4>Delete Clothes</h4>
+        <button onClick={deleted}>Delete</button>
+      </div>
       <div>
         <NavLink to="/">
           <button>Back</button>
