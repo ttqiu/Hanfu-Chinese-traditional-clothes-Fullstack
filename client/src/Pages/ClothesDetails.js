@@ -1,11 +1,42 @@
 import { useParams, NavLink } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
-const ClothesDetails = ({ clothes, stores }) => {
+const ClothesDetails = ({ clothes, storeName }) => {
+  const [clothesDetails, setClothesDetails] = useState({})
   let { id } = useParams()
-  const clothesDetails = clothes.find((cloth) => cloth._id === id)
-  const storeDetails = stores.find(
-    (store) => store._id === clothesDetails.store
-  )
+
+  useEffect(() => {
+    let isCancelled = false
+    const getClothesDetails = async () => {
+      const res = await axios.get(`http://localhost:3001/clothes/details/${id}`)
+      if (!isCancelled) {
+        setClothesDetails(res.data.clothes)
+      }
+    }
+    getClothesDetails()
+    return () => {
+      isCancelled = true
+    }
+  }, [id])
+
+  // const clothesDetails = clothes.find((cloth) => cloth._id === id)
+  // const storeDetails = stores.find(
+  //   (store) => store._id === clothesDetails.store
+  // )
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const res = await axios.put(
+      `http://localhost:3001/clothes/${id}`,
+      clothesDetails
+    )
+    setClothesDetails({ ...clothesDetails })
+  }
+
+  const handleChange = (e) => {
+    setClothesDetails({ ...clothesDetails, [e.target.id]: e.target.value })
+  }
 
   return (
     <div className="clothes-content">
@@ -23,17 +54,58 @@ const ClothesDetails = ({ clothes, stores }) => {
             <h3>Style: {clothesDetails.style}</h3>
           </div>
           <div className="detail">
-            <h3>Category: {clothesDetails.category.join(', ')}</h3>
+            <h3>Category: {clothesDetails.category}</h3>
           </div>
           <div className="detail">
-            <h3>Fabric: {clothesDetails.fabric.join(', ')}</h3>
+            <h3>Fabric: {clothesDetails.fabric}</h3>
           </div>
           <div className="detail">
-            <h3>Store: {storeDetails.name}</h3>
-            <img src={storeDetails.logo} />
+            <h3>Store: {storeName(clothesDetails.store)}</h3>
           </div>
         </div>
       </section>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <h4>Update Clothes Info</h4>
+          <p>Please fill in the Update info in the corresponding field</p>
+        </div>
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          onChange={handleChange}
+          value={clothes.name}
+        />
+        <label htmlFor="image">Image Url:</label>
+        <input
+          type="text"
+          id="image"
+          onChange={handleChange}
+          value={clothes.image}
+        />
+        <label htmlFor="style">Style:</label>
+        <input
+          type="text"
+          id="style"
+          onChange={handleChange}
+          value={clothes.style}
+        />
+        <label htmlFor="category">Category:</label>
+        <input
+          type="array"
+          id="category"
+          onChange={handleChange}
+          value={clothes.category}
+        />
+        <label htmlFor="fabric">Fabric:</label>
+        <input
+          type="array"
+          id="fabric"
+          onChange={handleChange}
+          value={clothes.fabric}
+        />
+        <button type="submit">Update</button>
+      </form>
       <div>
         <NavLink to="/">
           <button>Back</button>

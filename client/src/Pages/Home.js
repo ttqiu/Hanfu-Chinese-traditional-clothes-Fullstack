@@ -5,7 +5,7 @@ import ClothesCard from '../components/ClothesCard'
 import StoreCard from '../components/StoreCard'
 import { NavLink } from 'react-router-dom'
 
-const Home = ({ stores }) => {
+const Home = ({ stores, storeName }) => {
   const [searchResults, setSearchResults] = useState([])
   const [searched, toggleSearched] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
@@ -22,13 +22,13 @@ const Home = ({ stores }) => {
     setSearchQuery(event.target.value)
   }
 
-  const storeName = (result) => {
-    for (let i = 0; i < stores.length; i++) {
-      if (stores[i]._id === result) {
-        return stores[i].name
-      }
-    }
-  }
+  // const storeName = (result) => {
+  //   for (let i = 0; i < stores.length; i++) {
+  //     if (stores[i]._id === result) {
+  //       return stores[i].name
+  //     }
+  //   }
+  // }
 
   return (
     <div>
@@ -47,7 +47,6 @@ const Home = ({ stores }) => {
                   <ClothesCard
                     name={result.name}
                     image={result.image}
-                    // category={result.category}
                     store={storeName(result.store)}
                   />
                 </NavLink>

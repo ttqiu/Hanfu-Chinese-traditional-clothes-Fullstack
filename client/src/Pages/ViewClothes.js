@@ -13,7 +13,6 @@ const ViewClothes = ({ clothes, stores }) => {
           <ClothesCard
             image={cloth.image}
             name={cloth.name}
-            // category={cloth.category}
             store={store.name}
           />
         </NavLink>
