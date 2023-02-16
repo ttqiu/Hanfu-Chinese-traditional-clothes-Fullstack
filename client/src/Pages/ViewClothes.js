@@ -7,16 +7,19 @@ const ViewClothes = ({ clothes, stores }) => {
   const clothesDetails = clothes.filter((cloth) => cloth.store === store._id)
 
   return (
-    <div className="container-grid">
-      {clothesDetails.map((cloth) => (
-        <NavLink to={`/clothes/details/${cloth._id}`} key={cloth._id}>
-          <ClothesCard
-            image={cloth.image}
-            name={cloth.name}
-            store={store.name}
-          />
-        </NavLink>
-      ))}
+    <div>
+      <h1>{store.name}</h1>
+      <div className="container-grid">
+        {clothesDetails.map((cloth) => (
+          <NavLink to={`/clothes/details/${cloth._id}`} key={cloth._id}>
+            <ClothesCard
+              image={cloth.image}
+              name={cloth.name}
+              category={cloth.category}
+            />
+          </NavLink>
+        ))}
+      </div>
     </div>
   )
 }

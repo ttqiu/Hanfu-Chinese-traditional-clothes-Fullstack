@@ -9,7 +9,7 @@ const AddClothes = ({ getClothes, initClothes, stores }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post('http://localhost:3001/clothes', newClothes)
+      await axios.post('http://localhost:3001/clothes', newClothes)
       setNewClothes(initClothes)
       getClothes()
       navigate('/')

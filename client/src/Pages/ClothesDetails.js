@@ -17,10 +17,7 @@ const ClothesDetails = ({ storeName, getClothes, stores }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const res = await axios.put(
-      `http://localhost:3001/clothes/${id}`,
-      clothesDetails
-    )
+    await axios.put(`http://localhost:3001/clothes/${id}`, clothesDetails)
     setClothesDetails({ ...clothesDetails })
   }
 
@@ -29,10 +26,7 @@ const ClothesDetails = ({ storeName, getClothes, stores }) => {
   }
 
   const deleted = async () => {
-    const res = await axios.delete(
-      `http://localhost:3001/clothes/${id}`,
-      clothesDetails
-    )
+    await axios.delete(`http://localhost:3001/clothes/${id}`, clothesDetails)
     setClothesDetails({ ...clothesDetails })
     getClothes()
     navigate('/')
@@ -107,7 +101,9 @@ const ClothesDetails = ({ storeName, getClothes, stores }) => {
         <label htmlFor="store">Store:</label>
         <select id="store" onChange={handleChange} value={clothesDetails.store}>
           {stores.map((store) => (
-            <option value={`${store._id}`}>{store.name}</option>
+            <option value={`${store._id}`} key={store._id}>
+              {store.name}
+            </option>
           ))}
         </select>
         <button type="submit">Update</button>
