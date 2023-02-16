@@ -8,6 +8,7 @@ import Home from './Pages/Home'
 import ClothesDetails from './Pages/ClothesDetails'
 import ViewClothes from './Pages/ViewClothes'
 import AddClothes from './Pages/AddClothes'
+import AddStore from './Pages/AddStore'
 
 const App = () => {
   const [stores, setStore] = useState([])
@@ -97,6 +98,10 @@ const App = () => {
                 stores={stores}
               />
             }
+          />
+          <Route
+            path="add/store"
+            element={<AddStore getStores={getStores} stores={stores} />}
           />
         </Routes>
       </main>

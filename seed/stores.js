@@ -9,17 +9,22 @@ const main = async () => {
     {
       name: 'Shi San Yu',
       city: 'Hang Zhou',
-      logo: 'https://img1.baidu.com/it/u=1229746017,3918196524&fm=253&fmt=auto&app=120&f=JPEG?w=552&h=500'
+      logo: 'https://wx3.sinaimg.cn/large/006l0IQzly8h6600za794j30b40b4gll.jpg'
     },
     {
       name: 'Ming Jing Hua Fu',
       city: 'Hang Zhou',
-      logo: 'https://gw.alicdn.com/tfs//d5/62/TB139GOtZyYBuNkSnfoSuwWgVXa.jpg'
+      logo: 'https://gdp.alicdn.com/imgextra/i2/4009430182/O1CN01ySdXA11DDOigTohwS_!!4009430182.jpg'
     },
     {
       name: 'Chong Hui Han Tang',
       city: 'Cheng Du',
-      logo: 'https://img2.baidu.com/it/u=451042266,81601475&fm=253&fmt=auto&app=138&f=JPEG?w=267&h=339'
+      logo: 'https://gw.alicdn.com/imgextra//74/27/TB1xt3n28r0gK0jSZFnwu2RRXXa.png_110x10000.jpg_.webp'
+    },
+    {
+      name: 'Tong Guan',
+      city: 'Cheng Du',
+      logo: 'https://pic.hanfugou.com/web/2021/8/13/18/3466bc4e117641009d98919fcb505421.jpg_100x100.jpg'
     }
   ]
 

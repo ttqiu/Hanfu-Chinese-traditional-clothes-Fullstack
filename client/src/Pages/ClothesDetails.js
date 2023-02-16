@@ -35,8 +35,6 @@ const ClothesDetails = ({ storeName, getClothes, stores }) => {
     setClothesDetails({ ...clothesDetails, [e.target.id]: e.target.value })
   }
 
-  console.log(clothesDetails)
-
   const deleted = async () => {
     const res = await axios.delete(
       `http://localhost:3001/clothes/${id}`,
