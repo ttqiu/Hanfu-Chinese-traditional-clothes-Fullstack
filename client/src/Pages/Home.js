@@ -22,14 +22,6 @@ const Home = ({ stores, storeName }) => {
     setSearchQuery(event.target.value)
   }
 
-  // const storeName = (result) => {
-  //   for (let i = 0; i < stores.length; i++) {
-  //     if (stores[i]._id === result) {
-  //       return stores[i].name
-  //     }
-  //   }
-  // }
-
   return (
     <div>
       <div className="search">

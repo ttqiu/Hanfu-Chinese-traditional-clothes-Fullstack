@@ -1,27 +1,26 @@
-import { useParams, NavLink } from 'react-router-dom'
+import { useParams, NavLink, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+// import store from '../../models/store'
 
-const ClothesDetails = ({ clothes, storeName }) => {
-  const [clothesDetails, setClothesDetails] = useState({})
+const ClothesDetails = ({ storeName, getClothes, stores }) => {
   let { id } = useParams()
+  const [clothesDetails, setClothesDetails] = useState({})
+  const navigate = useNavigate()
 
   useEffect(() => {
-    let isCancelled = false
     const getClothesDetails = async () => {
       const res = await axios.get(`http://localhost:3001/clothes/details/${id}`)
-      if (!isCancelled) {
-        setClothesDetails(res.data.clothes)
-      }
+      setClothesDetails(res.data.clothes)
     }
     getClothesDetails()
-    return () => {
-      isCancelled = true
-    }
   }, [id])
 
-  // const clothesStates = clothes.find((cloth) => cloth._id === id)
-  // const storeDetails = stores.find((store) => store._id === clothesStates.store)
+  // const clothesDetails = clothes.find((cloth) => cloth._id === id)
+  // console.log(clothesDetails)
+  // const storeDetails = stores.find(
+  //   (store) => store._id === clothesDetails.store
+  // )
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -36,12 +35,16 @@ const ClothesDetails = ({ clothes, storeName }) => {
     setClothesDetails({ ...clothesDetails, [e.target.id]: e.target.value })
   }
 
+  console.log(clothesDetails)
+
   const deleted = async () => {
     const res = await axios.delete(
       `http://localhost:3001/clothes/${id}`,
       clothesDetails
     )
     setClothesDetails({ ...clothesDetails })
+    getClothes()
+    navigate('/')
   }
 
   return (
@@ -110,6 +113,12 @@ const ClothesDetails = ({ clothes, storeName }) => {
           onChange={handleChange}
           value={clothesDetails.fabric}
         />
+        <label htmlFor="store">Store:</label>
+        <select id="store" onChange={handleChange} value={clothesDetails.store}>
+          {stores.map((store) => (
+            <option value={`${store._id}`}>{store.name}</option>
+          ))}
+        </select>
         <button type="submit">Update</button>
       </form>
       <div>

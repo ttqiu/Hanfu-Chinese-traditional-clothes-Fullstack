@@ -73,37 +73,37 @@ const getClothesById = async (req, res) => {
   }
 }
 
-const getStoreByName = async (req, res) => {
-  try {
-    const storeName = req.params.name
-    const store = await Store.find({
-      name: { $regex: `${storeName}`, $options: 'i' }
-    })
-    if (store) {
-      return res.status(200).json({ store })
-    }
-    return res.status(404).send('Store with the specified Name does not exists')
-  } catch (error) {
-    return res.status(500).send(error.message)
-  }
-}
+// const getStoreByName = async (req, res) => {
+//   try {
+//     const storeName = req.params.name
+//     const store = await Store.find({
+//       name: { $regex: `${storeName}`, $options: 'i' }
+//     })
+//     if (store) {
+//       return res.status(200).json({ store })
+//     }
+//     return res.status(404).send('Store with the specified Name does not exists')
+//   } catch (error) {
+//     return res.status(500).send(error.message)
+//   }
+// }
 
-const getClothesByStoreId = async (req, res) => {
-  try {
-    const storeId = req.params.id
-    const clothes = await Clothes.find({
-      store: `${storeId}`
-    })
-    if (clothes) {
-      return res.status(200).json({ clothes })
-    }
-    return res
-      .status(404)
-      .send('Clothes with the specified Store ID does not exists')
-  } catch (error) {
-    return res.status(500).send(error.message)
-  }
-}
+// const getClothesByStoreId = async (req, res) => {
+//   try {
+//     const storeId = req.params.id
+//     const clothes = await Clothes.find({
+//       store: `${storeId}`
+//     })
+//     if (clothes) {
+//       return res.status(200).json({ clothes })
+//     }
+//     return res
+//       .status(404)
+//       .send('Clothes with the specified Store ID does not exists')
+//   } catch (error) {
+//     return res.status(500).send(error.message)
+//   }
+// }
 
 const updateClothes = async (req, res) => {
   try {
@@ -160,8 +160,8 @@ module.exports = {
   getAllStores,
   getClothesByName,
   getClothesById,
-  getStoreByName,
-  getClothesByStoreId,
+  // getStoreByName,
+  // getClothesByStoreId,
   updateClothes,
   updateStore,
   deleteClothes,

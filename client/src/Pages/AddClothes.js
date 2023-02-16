@@ -2,24 +2,21 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 
-const AddClothes = ({ getClothes, initClothes }) => {
+const AddClothes = ({ getClothes, initClothes, stores }) => {
   const [newClothes, setNewClothes] = useState(initClothes)
-
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       const res = await axios.post('http://localhost:3001/clothes', newClothes)
-      // console(res)
       setNewClothes(initClothes)
-      // getClothes()
+      getClothes()
+      navigate('/')
     } catch (err) {
       console.log(err)
     }
   }
-
-  console.log(newClothes)
 
   const handleChange = (e) => {
     setNewClothes({ ...newClothes, [e.target.id]: e.target.value })
@@ -69,12 +66,14 @@ const AddClothes = ({ getClothes, initClothes }) => {
           value={newClothes.fabric}
         />
         <label htmlFor="store">Store:</label>
-        <input
-          type="string"
-          id="store"
-          onChange={handleChange}
-          value={newClothes.store}
-        />
+        <select id="store" onChange={handleChange} value={newClothes.store}>
+          <option value="Select" hidden>
+            Select
+          </option>
+          {stores.map((store) => (
+            <option value={`${store._id}`}>{store.name}</option>
+          ))}
+        </select>
         <button type="submit">Add</button>
       </form>
     </div>

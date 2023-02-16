@@ -68,7 +68,14 @@ const App = () => {
           <Route path="about" element={<About />} />
           <Route
             path="clothes/details/:id"
-            element={<ClothesDetails clothes={clothes} storeName={storeName} />}
+            element={
+              <ClothesDetails
+                // clothes={clothes}
+                stores={stores}
+                getClothes={getClothes}
+                storeName={storeName}
+              />
+            }
           />
           <Route
             path="view/clothes/:id"
@@ -76,8 +83,8 @@ const App = () => {
               <ViewClothes
                 clothes={clothes}
                 stores={stores}
-                initClothes={initClothes}
-                getClothes={getClothes}
+                // initClothes={initClothes}
+                // getClothes={getClothes}
               />
             }
           />
