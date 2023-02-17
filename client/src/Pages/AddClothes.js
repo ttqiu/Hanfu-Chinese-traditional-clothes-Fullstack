@@ -68,7 +68,9 @@ const AddClothes = ({ getClothes, initClothes, stores }) => {
             Select
           </option>
           {stores.map((store) => (
-            <option value={`${store._id}`}>{store.name}</option>
+            <option value={`${store._id}`} key={store._id}>
+              {store.name}
+            </option>
           ))}
         </select>
         <button type="submit" className="buttom">
