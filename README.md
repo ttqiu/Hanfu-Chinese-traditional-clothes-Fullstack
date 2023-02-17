@@ -1,5 +1,9 @@
 # Building a Fullstack Website for Hanfu (Chinese traditional clothes)
 
+### By: Ting Ting Qiu
+
+#### [LinkedIn](https://www.linkedin.com/in/ting-ting-qiu-062587246/) | [GitHub](https://github.com/ttqiu)
+
 ![Hanfu](https://img2.baidu.com/it/u=937534537,2345953614&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=668)
 
 ## **_Description_**
@@ -32,10 +36,33 @@
 
 - Deploy on Heroku
 
+### **_Screenshots_**
+
+##### image header 1
+
+![Screenshots1](https://i.ibb.co/DkBzqfX/Screenshot-2023-02-16-194958.png)
+
+##### image header 2
+
+![Screenshots2](https://i.ibb.co/d75QwdV/Screenshot-2023-02-16-195020.png)
+
+##### image header 3
+
+![Screenshots3](https://i.ibb.co/Jk7vyy6/Screenshot-2023-02-16-195134.png)
+
+### **_Future Updates_**
+
+- [ ] Add user comment
+- [ ] Multiple images for a hanfu details
+- [ ] Drag and drop to upload clothes images and store logo
+- [ ] User permissions for delete and update hanfu information
+
 ## **_Credits_**
 
-#### Images: [Google Seach](https://www.google.com/)
+#### Images: [Google Search](https://www.google.com/)
 
 #### CSS Guide: [w3schools](https://www.w3schools.com/css/)
+
+#### MERN Stack Gudie: [w3schools](https://www.mongodb.com/languages/mern-stack-tutorial/)
 
 #### StackOverflow Help: [StackOverflow](https://stackoverflow.com/)
