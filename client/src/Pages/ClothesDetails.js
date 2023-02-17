@@ -21,7 +21,7 @@ const ClothesDetails = ({ storeName, getClothes, stores }) => {
     await axios.put(`http://localhost:3001/clothes/${id}`, clothesDetails)
     setClothesDetails({ ...clothesDetails })
     alert('The info on this hanfu has been updated!')
-    setUpdated(false)
+    window.location.reload(false)
   }
 
   const update = () => {
