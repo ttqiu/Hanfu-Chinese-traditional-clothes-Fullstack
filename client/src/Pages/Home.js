@@ -24,6 +24,7 @@ const Home = ({ stores, storeName }) => {
 
   return (
     <div>
+      <h1 className="title">Let's Enjoy Hanfu (Chinese Traditional Clothes)</h1>
       <div>
         <Search
           onSubmit={getSearchResults}

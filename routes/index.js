@@ -10,6 +10,6 @@ router.delete('/clothes/:id', controllers.deleteClothes)
 router.get('/clothes/details/:id', controllers.getClothesById)
 router.post('/stores', controllers.createStore)
 router.get('/stores', controllers.getAllStores)
-router.put('/stores/:id', controllers.updateStore)
+// router.put('/stores/:id', controllers.updateStore)
 
 module.exports = router
