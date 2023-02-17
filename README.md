@@ -63,6 +63,8 @@
 
 #### CSS Guide: [w3schools](https://www.w3schools.com/css/)
 
-#### MERN Stack Gudie: [w3schools](https://www.mongodb.com/languages/mern-stack-tutorial/)
+#### MERN Stack Gudie: [MongoDB](https://www.mongodb.com/languages/mern-stack-tutorial/)
+
+#### React.js Cheat Sheet: [upmostly](https://upmostly.com/ultimate-reactjs-cheat-sheet/)
 
 #### StackOverflow Help: [StackOverflow](https://stackoverflow.com/)
