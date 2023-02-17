@@ -5,6 +5,7 @@ import axios from 'axios'
 const ClothesDetails = ({ storeName, getClothes, stores }) => {
   let { id } = useParams()
   const [clothesDetails, setClothesDetails] = useState({})
+  const [updated, setUpdated] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -19,6 +20,12 @@ const ClothesDetails = ({ storeName, getClothes, stores }) => {
     e.preventDefault()
     await axios.put(`http://localhost:3001/clothes/${id}`, clothesDetails)
     setClothesDetails({ ...clothesDetails })
+    alert('The info on this hanfu has been updated!')
+    setUpdated(false)
+  }
+
+  const update = () => {
+    setUpdated(true)
   }
 
   const handleChange = (e) => {
@@ -26,10 +33,13 @@ const ClothesDetails = ({ storeName, getClothes, stores }) => {
   }
 
   const deleted = async () => {
-    await axios.delete(`http://localhost:3001/clothes/${id}`, clothesDetails)
-    setClothesDetails({ ...clothesDetails })
-    getClothes()
-    navigate('/')
+    let text = 'Are you sure to delete this hanfu?'
+    if (window.confirm(text) == true) {
+      await axios.delete(`http://localhost:3001/clothes/${id}`, clothesDetails)
+      setClothesDetails({ ...clothesDetails })
+      getClothes()
+      navigate('/')
+    }
   }
 
   return (
@@ -43,7 +53,7 @@ const ClothesDetails = ({ storeName, getClothes, stores }) => {
         </a>
       </section>
       <section className="details">
-        <div className="flex-row game-details">
+        <div className="flex-row">
           <div className="detail">
             <h3>Style: {clothesDetails.style}</h3>
           </div>
@@ -58,63 +68,76 @@ const ClothesDetails = ({ storeName, getClothes, stores }) => {
           </div>
         </div>
       </section>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <h4>Update Clothes Info</h4>
-          <p>Please fill in the Update info in the corresponding field</p>
-        </div>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          onChange={handleChange}
-          value={clothesDetails.name}
-        />
-        <label htmlFor="image">Image Url:</label>
-        <input
-          type="text"
-          id="image"
-          onChange={handleChange}
-          value={clothesDetails.image}
-        />
-        <label htmlFor="style">Style:</label>
-        <input
-          type="text"
-          id="style"
-          onChange={handleChange}
-          value={clothesDetails.style}
-        />
-        <label htmlFor="category">Category:</label>
-        <input
-          type="array"
-          id="category"
-          onChange={handleChange}
-          value={clothesDetails.category}
-        />
-        <label htmlFor="fabric">Fabric:</label>
-        <input
-          type="array"
-          id="fabric"
-          onChange={handleChange}
-          value={clothesDetails.fabric}
-        />
-        <label htmlFor="store">Store:</label>
-        <select id="store" onChange={handleChange} value={clothesDetails.store}>
-          {stores.map((store) => (
-            <option value={`${store._id}`} key={store._id}>
-              {store.name}
-            </option>
-          ))}
-        </select>
-        <button type="submit">Update</button>
-      </form>
+      <h4>
+        Update Clothes Info: Please fill in the update info in the corresponding
+        field
+      </h4>
       <div>
-        <h4>Delete Clothes</h4>
-        <button onClick={deleted}>Delete</button>
+        <button onClick={update}>Update Info</button>
+        {updated && (
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              onChange={handleChange}
+              value={clothesDetails.name}
+            />
+            <label htmlFor="image">Image Url:</label>
+            <input
+              type="text"
+              id="image"
+              onChange={handleChange}
+              value={clothesDetails.image}
+            />
+            <label htmlFor="style">Style:</label>
+            <input
+              type="text"
+              id="style"
+              onChange={handleChange}
+              value={clothesDetails.style}
+            />
+            <label htmlFor="category">Category:</label>
+            <input
+              type="array"
+              id="category"
+              onChange={handleChange}
+              value={clothesDetails.category}
+            />
+            <label htmlFor="fabric">Fabric:</label>
+            <input
+              type="array"
+              id="fabric"
+              onChange={handleChange}
+              value={clothesDetails.fabric}
+            />
+            <label htmlFor="store">Store:</label>
+            <select
+              id="store"
+              onChange={handleChange}
+              value={clothesDetails.store}
+            >
+              {stores.map((store) => (
+                <option value={`${store._id}`} key={store._id}>
+                  {store.name}
+                </option>
+              ))}
+            </select>
+            <button type="submit" className="buttom">
+              Send Update
+            </button>
+          </form>
+        )}
+      </div>
+      <div className="delete">
+        <h4>Delete Clothes:</h4>
+        <button onClick={deleted} className="buttom">
+          Delete
+        </button>
       </div>
       <div>
         <NavLink to="/">
-          <button>Back</button>
+          <button>Home</button>
         </NavLink>
       </div>
     </div>

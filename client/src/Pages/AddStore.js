@@ -30,10 +30,8 @@ const AddStore = ({ getStores }) => {
   return (
     <div>
       <h1>Add A New Hanfu Store</h1>
+      <h3>Please fill in the store info</h3>
       <form onSubmit={handleSubmit}>
-        <div>
-          <h3>Please fill in the store info</h3>
-        </div>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -55,7 +53,9 @@ const AddStore = ({ getStores }) => {
           onChange={handleChange}
           value={newStore.logo}
         />
-        <button type="submit">Add</button>
+        <button type="submit" className="buttom">
+          Add
+        </button>
       </form>
     </div>
   )

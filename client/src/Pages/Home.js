@@ -24,7 +24,7 @@ const Home = ({ stores, storeName }) => {
 
   return (
     <div>
-      <div className="search">
+      <div>
         <Search
           onSubmit={getSearchResults}
           value={searchQuery}
@@ -33,7 +33,7 @@ const Home = ({ stores, storeName }) => {
         {searched && (
           <div>
             <h2>Search Results</h2>
-            <section className="search-results container-grid">
+            <section className="container-grid">
               {searchResults.map((result) => (
                 <NavLink to={`/clothes/details/${result._id}`} key={result._id}>
                   <ClothesCard
@@ -47,7 +47,7 @@ const Home = ({ stores, storeName }) => {
           </div>
         )}
       </div>
-      <div className="stores">
+      <div>
         <h2>Stores</h2>
         <section className="container-grid">
           {stores.map((store) => (

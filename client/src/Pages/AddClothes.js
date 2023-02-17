@@ -25,11 +25,8 @@ const AddClothes = ({ getClothes, initClothes, stores }) => {
   return (
     <div>
       <h1>Add A New Hanfu</h1>
+      <h4>Please fill in the clothes info</h4>
       <form onSubmit={handleSubmit}>
-        <div>
-          <h4>Add Clothes</h4>
-          <p>Please fill in the clothes info</p>
-        </div>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -74,7 +71,9 @@ const AddClothes = ({ getClothes, initClothes, stores }) => {
             <option value={`${store._id}`}>{store.name}</option>
           ))}
         </select>
-        <button type="submit">Add</button>
+        <button type="submit" className="buttom">
+          Add
+        </button>
       </form>
     </div>
   )

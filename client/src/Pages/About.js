@@ -1,8 +1,8 @@
 const About = () => {
   return (
-    <div className="flex-col">
+    <div className="about">
       <h1>About Page</h1>
-      <span className="about">
+      <span>
         <p>
           Hanfu is the traditional style of clothing worn by the Han Chinese.
         </p>
