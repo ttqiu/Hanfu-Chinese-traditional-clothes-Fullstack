@@ -8,7 +8,7 @@ const ViewClothes = ({ clothes, stores }) => {
 
   return (
     <div>
-      <h1>{store.name}</h1>
+      <h1>{store?.name}</h1>
       <div className="container-grid">
         {clothesDetails.map((cloth) => (
           <NavLink to={`/clothes/details/${cloth._id}`} key={cloth._id}>

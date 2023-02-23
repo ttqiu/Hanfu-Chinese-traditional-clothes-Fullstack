@@ -2,7 +2,7 @@ import { useParams, NavLink, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const ClothesDetails = ({ storeName, getClothes, stores }) => {
+const ClothesDetails = ({ getClothes, stores }) => {
   let { id } = useParams()
   const [clothesDetails, setClothesDetails] = useState({})
   const [updated, setUpdated] = useState(false)
@@ -10,15 +10,22 @@ const ClothesDetails = ({ storeName, getClothes, stores }) => {
 
   useEffect(() => {
     const getClothesDetails = async () => {
-      const res = await axios.get(`http://localhost:3001/clothes/details/${id}`)
+      const res = await axios.get(`/api/clothes/details/${id}`)
       setClothesDetails(res.data.clothes)
     }
     getClothesDetails()
   }, [id])
 
+  const storeDetails = () => {
+    if (clothesDetails !== undefined) {
+      const store = stores.find((store) => store._id === clothesDetails.store)
+      return store
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await axios.put(`http://localhost:3001/clothes/${id}`, clothesDetails)
+    await axios.put(`/api/clothes/${id}`, clothesDetails)
     setClothesDetails({ ...clothesDetails })
     alert('The info on this hanfu has been updated!')
     window.location.reload(false)
@@ -35,10 +42,10 @@ const ClothesDetails = ({ storeName, getClothes, stores }) => {
   const deleted = async () => {
     let text = 'Are you sure to delete this hanfu?'
     if (window.confirm(text) == true) {
-      await axios.delete(`http://localhost:3001/clothes/${id}`, clothesDetails)
+      await axios.delete(`/api/clothes/${id}`, clothesDetails)
       setClothesDetails({ ...clothesDetails })
-      getClothes()
       navigate('/')
+      getClothes()
     }
   }
 
@@ -64,7 +71,7 @@ const ClothesDetails = ({ storeName, getClothes, stores }) => {
             <h3>Fabric: {clothesDetails.fabric}</h3>
           </div>
           <div className="detail">
-            <h3>Store: {storeName(clothesDetails.store)}</h3>
+            <h3>Store: {storeDetails()?.name}</h3>
           </div>
         </div>
       </section>

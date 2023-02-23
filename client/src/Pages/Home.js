@@ -5,14 +5,14 @@ import ClothesCard from '../components/ClothesCard'
 import StoreCard from '../components/StoreCard'
 import { NavLink } from 'react-router-dom'
 
-const Home = ({ stores, storeName }) => {
+const Home = ({ stores }) => {
   const [searchResults, setSearchResults] = useState([])
   const [searched, toggleSearched] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
 
   const getSearchResults = async (e) => {
     e.preventDefault()
-    const res = await axios.get(`http://localhost:3001/clothes/${searchQuery}`)
+    const res = await axios.get(`/api/clothes/${searchQuery}`)
     setSearchResults(res.data.clothes)
     toggleSearched(true)
     setSearchQuery('')
@@ -37,11 +37,7 @@ const Home = ({ stores, storeName }) => {
             <section className="container-grid">
               {searchResults.map((result) => (
                 <NavLink to={`/clothes/details/${result._id}`} key={result._id}>
-                  <ClothesCard
-                    name={result.name}
-                    image={result.image}
-                    store={storeName(result.store)}
-                  />
+                  <ClothesCard name={result.name} image={result.image} />
                 </NavLink>
               ))}
             </section>

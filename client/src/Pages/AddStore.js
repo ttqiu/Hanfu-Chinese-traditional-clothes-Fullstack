@@ -14,7 +14,7 @@ const AddStore = ({ getStores }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await axios.post('http://localhost:3001/stores', newStore)
+      await axios.post('/api/stores', newStore)
       setNewStore(initStore)
       getStores()
       navigate('/')

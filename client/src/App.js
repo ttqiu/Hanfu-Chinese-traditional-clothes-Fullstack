@@ -23,7 +23,7 @@ const App = () => {
 
   const getStores = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/stores')
+      const res = await axios.get('/api/stores')
       setStore(res.data.stores)
     } catch (err) {
       console.log(err)
@@ -38,7 +38,7 @@ const App = () => {
 
   const getClothes = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/clothes')
+      const res = await axios.get('/api/clothes')
       setClothes(res.data.clothes)
     } catch (err) {
       console.log(err)
@@ -49,23 +49,20 @@ const App = () => {
     getClothes()
   }, [])
 
-  const storeName = (result) => {
-    for (let i = 0; i < stores.length; i++) {
-      if (stores[i]._id === result) {
-        return stores[i].name
-      }
-    }
-  }
+  // const storeName = (result) => {
+  //   for (let i = 0; i < stores.length; i++) {
+  //     if (stores[i]._id === result) {
+  //       return stores[i].name
+  //     }
+  //   }
+  // }
 
   return (
     <div className="App">
       <Nav />
       <main>
         <Routes>
-          <Route
-            path="/"
-            element={<Home stores={stores} storeName={storeName} />}
-          />
+          <Route path="/" element={<Home stores={stores} />} />
           <Route path="about" element={<About />} />
           <Route
             path="clothes/details/:id"
@@ -73,7 +70,7 @@ const App = () => {
               <ClothesDetails
                 stores={stores}
                 getClothes={getClothes}
-                storeName={storeName}
+                // storeName={storeName}
               />
             }
           />
