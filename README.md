@@ -34,7 +34,7 @@
 
 - CSS to style up the pages
 
-- Deploy on Heroku
+- Deploy on Heroku [here](https://hanfu.herokuapp.com/)
 
 ### **_Screenshots_**
 
